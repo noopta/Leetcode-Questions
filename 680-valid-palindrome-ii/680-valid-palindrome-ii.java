@@ -5,7 +5,6 @@ class Solution {
         int right = s.length() - 1;
         
         while(left < right){
-            System.out.print("LEFT = " + s.charAt(left) + " RIGHT = " + s.charAt(right));
             if(s.charAt(left) != s.charAt(right)){
                 return false;
             }
