@@ -28,8 +28,6 @@ class Solution {
         
         kThFromEnd = (listLen) - k;
         
-        System.out.println(kThFromStart + " " + kThFromEnd);
-        
         while(firstPointer != null && firstCounter != kThFromStart - 1){
             firstPointer = firstPointer.next;
             firstCounter++;
@@ -47,9 +45,6 @@ class Solution {
         
         firstPointer.val = endVal;
         secondPointer.val = startVal;
-        
-        System.out.println(startVal + " " + endVal);
-        
         
         
         return head;
