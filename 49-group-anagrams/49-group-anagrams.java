@@ -8,23 +8,16 @@ class Solution {
             char[] charArray = strs[i].toCharArray();
             Arrays.sort(charArray);
             if(!theMap.containsKey(new String(charArray))){
-                theMap.put(new String(charArray), new ArrayList<String>());
-            }
-        }
-        
-        
-        for(i = 0; i < strs.length; i++){
-            char[] charArray = strs[i].toCharArray();
-            Arrays.sort(charArray);
-            
-            String tempString = new String(charArray);
-            
-            if(theMap.containsKey(tempString)){
-                ArrayList<String> tempList = theMap.get(tempString);
+                ArrayList<String> tempList = new ArrayList<String>();
                 tempList.add(strs[i]);
-                theMap.put(tempString, tempList);
+                theMap.put(new String(charArray), tempList);
+            } else {
+                ArrayList<String> tempList = theMap.get(new String(charArray));
+                tempList.add(strs[i]);
+                theMap.put(new String(charArray), tempList);
             }
         }
+        
         
         for(String currentString : theMap.keySet()){
             groupedAnagrams.add(theMap.get(currentString));
