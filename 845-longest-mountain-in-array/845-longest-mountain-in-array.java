@@ -1,8 +1,6 @@
 class Solution {
     public int longestMountain(int[] arr) {
         int mountainLen = 0;
-        int peak = 0;
-        int valley = 0;
         boolean peakFound = false;
         boolean valleyFound = false;
         int i = 0;
