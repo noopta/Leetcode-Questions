@@ -18,11 +18,10 @@ class Solution {
                     left++;
                 }
                 
-                theMap.put(s.charAt(right), 1);
-            } else {
-                theMap.put(s.charAt(right), 1);
-            }
+                
+            } 
             
+            theMap.put(s.charAt(right), 1);
             maxLen = Math.max(maxLen, theMap.size());
             right++;
         }
