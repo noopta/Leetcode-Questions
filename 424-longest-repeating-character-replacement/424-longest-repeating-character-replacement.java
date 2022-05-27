@@ -18,16 +18,18 @@ class Solution {
                 currentMax = Math.max(currentMax, theMap.get(currentKey));
             }
             
-            while((right - left + 1) - currentMax > k){
-                for(char currentKey : theMap.keySet()){
-                    currentMax = Math.max(currentMax, theMap.get(currentKey));
-                }      
+            while((right - left + 1) - currentMax > k){    
                 
                 theMap.put(s.charAt(left), theMap.get(s.charAt(left)) - 1);
                 
                 if(theMap.get(s.charAt(left)) <= 0){
                     theMap.remove(s.charAt(left));
                 }
+                
+    
+                for(char currentKey : theMap.keySet()){
+                    currentMax = Math.max(currentMax, theMap.get(currentKey));
+                }  
                 
                 left++;
             }
