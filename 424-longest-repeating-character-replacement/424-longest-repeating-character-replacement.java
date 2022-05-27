@@ -18,11 +18,9 @@ class Solution {
             for(char currentKey : theMap.keySet()){
               currentMax = Math.max(currentMax, theMap.get(currentKey));
             }
-            
-            System.out.println(s.charAt(right) + " current max = " + currentMax);
+ 
             if ((right - left + 1)  - currentMax > k){
-                System.out.println(s.charAt(right));
-                
+
                 while((right - left + 1) - currentMax > k){
                     
                     for(char currentKey : theMap.keySet()){
