@@ -25,7 +25,6 @@ class Solution {
                 if(theMap.get(s.charAt(left)) <= 0){
                     theMap.remove(s.charAt(left));
                 }
-                
     
                 for(char currentKey : theMap.keySet()){
                     currentMax = Math.max(currentMax, theMap.get(currentKey));
