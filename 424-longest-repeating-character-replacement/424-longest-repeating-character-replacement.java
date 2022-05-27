@@ -9,38 +9,35 @@ class Solution {
         while(right < s.length()){
             
             if(theMap.containsKey(s.charAt(right))){
-                theMap.put(s.charAt(right), theMap.get(s.charAt(right)) + 1);
-                
+                theMap.put(s.charAt(right), theMap.get(s.charAt(right)) + 1); 
             } else {
                 theMap.put(s.charAt(right), 1);
             }
             
             for(char currentKey : theMap.keySet()){
-              currentMax = Math.max(currentMax, theMap.get(currentKey));
+                currentMax = Math.max(currentMax, theMap.get(currentKey));
             }
- 
-            if ((right - left + 1)  - currentMax > k){
-
-                while((right - left + 1) - currentMax > k){
-                    
-                    for(char currentKey : theMap.keySet()){
-                      currentMax = Math.max(currentMax, theMap.get(currentKey));
-                    }
-                    theMap.put(s.charAt(left), theMap.get(s.charAt(left)) - 1);
-
-                    if(theMap.get(s.charAt(left)) <= 0){
-                        theMap.remove(s.charAt(left));
-                    }
-
-                    left++;
-                }
-            }
-
-            maxLen = Math.max(maxLen, right - left + 1);
             
+            while((right - left + 1) - currentMax > k){
+                for(char currentKey : theMap.keySet()){
+                    currentMax = Math.max(currentMax, theMap.get(currentKey));
+                }      
+                
+                theMap.put(s.charAt(left), theMap.get(s.charAt(left)) - 1);
+                
+                if(theMap.get(s.charAt(left)) <= 0){
+                    theMap.remove(s.charAt(left));
+                }
+                
+                left++;
+            }
+            
+            maxLen = Math.max(maxLen, right - left + 1);
             
             right++;
         }
+        
+        
         
         return maxLen;
     }
