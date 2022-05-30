@@ -1,20 +1,32 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        // create two maps, one for s1 and one for s2 with their character frequencies
-        // iterate through s2 with a window of s1.length
-        // adjust the number of matches for each character removed and added
-        // when the number of matches == 26, then return true
-        // else return false
+        // first check an edge case where s1.length() > s2.length()
+        // if true then return false
+        // else continue with the algorithm
+        // create a map for s1, and a map for s2, these can be 2 arrays 
+        // initialize the array with the first s1.length() characters and their frequencies 
+        // have one loop to first calculate the number of matching characters 
+        // then run a loop for the sliding window algorithm until right == s2.length()
+        // calculate the index for the char of s2.charAt(right)
+        // increment the count of this char in s2Map
+        // if s2Map[index] == s1Map[index], then increment numMatches
+        // if s2Map[index] - 1 == s1[Map], then decrement numMatches
+        // then calculate the index for s2.charAt(left)
+        // decrement s2Map for the respective character at the left index
+        // if s1Map[left] == s2Map[left], then increment numMatches
+        // if s1Map[left] - 1 == s2Map[left], then decrement numMatches
+        // then increment left, and right pointers
         if(s1.length() > s2.length()){
             return false;
         }
         
-        int[] s1Map = new int[26];
-        int[] s2Map = new int[26];
-        int i = 0;
         int numMatches = 0;
-        int right = s1.length();
+        int s1Map[] = new int[26];
+        int s2Map[] = new int[26];
         int left = 0;
+        int right = s1.length();
+        int i = 0;
+        int currentIndex = 0;
         
         for(i = 0; i < 26; i++){
             s1Map[i] = 0;
@@ -22,35 +34,37 @@ class Solution {
         }
         
         for(i = 0; i < s1.length(); i++){
-            int charIndex = (int)(s1.charAt(i)) - 97;
-            int s2CharIndex = (int)(s2.charAt(i)) - 97;
+            currentIndex = (int)(s1.charAt(i)) - 97;
+            s1Map[currentIndex]++;
             
-            s1Map[charIndex]++;
-            s2Map[s2CharIndex]++;
+            currentIndex = (int)(s2.charAt(i)) - 97;
+            s2Map[currentIndex]++;
         }
         
         for(i = 0; i < 26; i++){
-            if(s2Map[i] == s1Map[i]){
+            if(s1Map[i] == s2Map[i]){
                 numMatches++;
             }
         }
         
-        while(right < s2.length() && numMatches != 26){
-            int index = (int)s2.charAt(right) - 97;
-            s2Map[index]++;
+        
+        while(numMatches != 26 && right < s2.length()){
+            currentIndex = (int)(s2.charAt(right)) - 97;
+            s2Map[currentIndex]++;
             
-            if(s2Map[index] == s1Map[index]){
+            if(s2Map[currentIndex] == s1Map[currentIndex]){
                 numMatches++;
-            } else if (s2Map[index] - 1 == s1Map[index]){
+            } else if (s2Map[currentIndex] - 1 == s1Map[currentIndex]){
                 numMatches--;
             }
             
-            index = (int)s2.charAt(left) - 97;
-            s2Map[index]--;
+            currentIndex = (int)(s2.charAt(left)) - 97;
             
-            if(s2Map[index] == s1Map[index]){
+            s2Map[currentIndex]--;
+            
+            if(s2Map[currentIndex] == s1Map[currentIndex]){
                 numMatches++;
-            } else if (s1Map[index] - 1 == s2Map[index]){
+            } else if (s1Map[currentIndex] - 1 == s2Map[currentIndex]){
                 numMatches--;
             }
             
@@ -58,10 +72,6 @@ class Solution {
             right++;
         }
         
-        if(numMatches == 26){
-            return true;
-        }
-        
-        return false;
+        return numMatches == 26;
     }
 }
