@@ -28,11 +28,6 @@ class Solution {
         int i = 0;
         int currentIndex = 0;
         
-        for(i = 0; i < 26; i++){
-            s1Map[i] = 0;
-            s2Map[i] = 0;
-        }
-        
         for(i = 0; i < s1.length(); i++){
             currentIndex = (int)(s1.charAt(i)) - 97;
             s1Map[currentIndex]++;
