@@ -35,25 +35,6 @@ class Solution {
             }
         }
         
-        /*
-                    if matches == 26: return True
-            
-            index = ord(s2[r]) - ord('a')
-            s2Count[index] += 1
-            if s1Count[index] == s2Count[index]:
-                matches += 1
-            elif s1Count[index] + 1 == s2Count[index]:
-                matches -= 1
-            
-            index = ord(s2[l]) - ord('a')
-            s2Count[index] -= 1
-            if s1Count[index] == s2Count[index]:
-                matches += 1
-            elif s1Count[index] - 1 == s2Count[index]:
-                matches -= 1
-            l += 1
-        
-        */
         while(right < s2.length() && numMatches != 26){
             int index = (int)s2.charAt(right) - 97;
             s2Map[index]++;
