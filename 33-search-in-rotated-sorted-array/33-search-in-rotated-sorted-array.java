@@ -61,7 +61,6 @@ class Solution {
         int right = nums.length - 1;
         int rotationIndex = findRotationIndex(nums);
         
-        System.out.println(rotationIndex);
         
         if(nums[rotationIndex] == target){
             return rotationIndex;
